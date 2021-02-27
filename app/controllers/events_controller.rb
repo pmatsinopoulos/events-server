@@ -11,6 +11,6 @@ class EventsController < ApplicationController
       }.compact
     )
 
-    render json: { result: 'ok' }, status: :created
+    render json: { result: 'ok', code: event.event_id }, status: :created
   end
 end

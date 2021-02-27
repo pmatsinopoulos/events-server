@@ -23,10 +23,15 @@ RSpec.describe 'Create Event' do
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(response).to have_http_status(:created)
+      response_decoded = ActiveSupport::JSON.decode(response.body)
+
+      expect(response_decoded['result']).to eq('ok')
+      expect(response_decoded['code']).not_to be_blank
 
       event_created = EventStore.event_store.read.last
       expect(event_created).to(be_an_event(::Events::Commands::CreateOrder))
       expect(event_created.data).to eq('code' => code)
+      expect(response_decoded['code']).to eq(event_created.event_id)
     end
 
     context 'when stream name is specified' do
