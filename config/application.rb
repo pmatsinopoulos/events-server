@@ -4,7 +4,7 @@ require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-require "active_record/railtie"
+# require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
 # require "action_mailer/railtie"
@@ -36,9 +36,5 @@ module EventsServer
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
-    config.to_prepare do
-      Rails.configuration.event_store = RailsEventStore::Client.new
-    end
   end
 end
