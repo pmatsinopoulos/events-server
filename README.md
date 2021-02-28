@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. start zookeeper
 
-Things you may want to cover:
+From this root folder of your kafka installation.
 
-* Ruby version
+```bash
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+```
 
-* System dependencies
+2. start kafka
 
-* Configuration
+From this root folder of your kafka installation.
 
-* Database creation
+```bash
+$ bin/kafka-server-start.sh config/server.properties
+```
 
-* Database initialization
+3. make sure you have "events" topic created
 
-* How to run the test suite
+Note: if you have already done it, don't do it again.
 
-* Services (job queues, cache servers, search engines, etc.)
+From this root folder of your kafka installation.
 
-* Deployment instructions
+```bash
+$ bin/kafka-topics.sh --create --topic events --bootstrap-server localhost:9092
+```   
 
-* ...
+4. start console consumer
+
+From this root folder of your kafka installation.
+
+```bash
+4. bin/kafka-console-consumer.sh --topic events --from-beginning --bootstrap-server localhost:9092
+```
+
+5. start events server
+
+From this root folder of this repo.
+
+```bash
+$ ./start-events-server.sh
+```
