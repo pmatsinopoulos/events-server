@@ -14,7 +14,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
-
+#
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -38,7 +38,9 @@ module EventsServer
     config.api_only = true
 
     config.to_prepare do
-      Rails.configuration.event_store = RailsEventStore::Client.new
+      Rails.configuration.event_store = RailsEventStore::Client.new(
+        mapper: RubyEventStore::Mappers::Protobuf.new
+      )
     end
   end
 end

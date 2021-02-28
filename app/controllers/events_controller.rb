@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   def create
-    event = "::Events::#{params[:event_class]}s::#{params[:event_type]}".constantize.new(
-      data: params[:payload]
+    event = RubyEventStore::Proto.new(
+      data: "::Events::#{params[:event_class]}s::#{params[:event_type]}".constantize.new(
+        params[:payload].as_json
+      )
     )
 
     EventStore.event_store.publish(
