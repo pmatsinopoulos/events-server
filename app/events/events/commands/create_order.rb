@@ -1,5 +1,5 @@
 module Events
   module Commands
-    class CreateOrder < RailsEventStore::Event; end
+    class CreateOrder < Base; end
   end
 end
