@@ -1,5 +1,5 @@
 module Events
   module Commands
-    class CreateOrder < Base; end
+    class CreateOrder < ::Events::Base; end
   end
 end

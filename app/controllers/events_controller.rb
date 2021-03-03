@@ -6,7 +6,7 @@ class EventsController < ApplicationController
       data: params[:payload]
     )
 
-    kafka.deliver_message(ActiveSupport::JSON.encode(event), topic: 'events')
+    kafka.deliver_message(ActiveSupport::JSON.encode(event), topic: "events_#{params[:event_class].downcase}s")
 
     render json: { result: 'ok', code: event.event_id }, status: :created
   end

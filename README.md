@@ -16,25 +16,43 @@ From this root folder of your kafka installation.
 $ bin/kafka-server-start.sh config/server.properties
 ```
 
-3. make sure you have "events" topic created
+3. make sure you have "events_commands" topic created
 
 Note: if you have already done it, don't do it again.
 
 From this root folder of your kafka installation.
 
 ```bash
-$ bin/kafka-topics.sh --create --topic events --bootstrap-server localhost:9092
+$ bin/kafka-topics.sh --create --topic events_commands --bootstrap-server localhost:9092
 ```   
 
-4. start console consumer
+4. make sure you have "events_facts" topic created
+
+Note: if you have already done it, don't do it again.
 
 From this root folder of your kafka installation.
 
 ```bash
-4. bin/kafka-console-consumer.sh --topic events --from-beginning --bootstrap-server localhost:9092
+$ bin/kafka-topics.sh --create --topic events_facts --bootstrap-server localhost:9092
+```   
+
+5. start console consumer for "events_commands" topic
+
+From this root folder of your kafka installation.
+
+```bash
+$. bin/kafka-console-consumer.sh --topic events_commands --from-beginning --bootstrap-server localhost:9092
 ```
 
-5. start events server
+5. start console consumer for "events_facts" topic
+
+From this root folder of your kafka installation.
+
+```bash
+$. bin/kafka-console-consumer.sh --topic events_facts --from-beginning --bootstrap-server localhost:9092
+```
+
+6. start events server
 
 From this root folder of this repo.
 
